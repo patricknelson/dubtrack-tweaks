@@ -1,8 +1,6 @@
 ## dubtrack-tweaks
 
-Adds extra functionality to [dubtrack.fm](https://www.dubtrack.fm), such as spacebar mute, auto-updub and linking to currently playing SoundCloud songs.
-
-Originally a gist (https://gist.github.com/patricknelson/4b729ec234a35d4b8cc9) this has now been converted into a repository.
+Adds extra functionality to [dubtrack.fm](https://www.dubtrack.fm), such as spacebar mute, auto-updub and linking to currently playing SoundCloud songs. Originally a [gist](https://gist.github.com/patricknelson/4b729ec234a35d4b8cc9) which has since been moved here.
 
 ### Features:
 
