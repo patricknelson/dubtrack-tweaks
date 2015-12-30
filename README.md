@@ -14,7 +14,7 @@ Adds extra functionality to [dubtrack.fm](https://www.dubtrack.fm), such as spac
 
 1. In chrome, download/install Tampermonkey here: **[Download Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)**
 2. In Tampermonkey options, go to "Create new Script"
-3. Copy/paste these entire contents of the file: **[dubtrack-tweaks.user.js](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)**
+3. Copy/paste these entire contents of the file: **[dubtrack-tweaks.user.js](https://rawgit.com/patricknelson/dubtrack-tweaks/master/dubtrack-tweaks.user.js )**
 4. Visit [dubtrack.fm](https://www.dubtrack.fm) and enter a room.
 5. Make sure Tampermonkey is enabled (click the Tampermonkey icon and select "Enabled").
 
