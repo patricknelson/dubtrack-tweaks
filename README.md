@@ -31,3 +31,11 @@ Updating is easy. In Tampermonkey:
 ![Update Screenshot](https://rawgit.com/patricknelson/dubtrack-tweaks/master/images/update.png)
 
 TODO: Add Firefox/Greasemonkey update instructions.
+
+
+### TODO
+
+- Fix bug tracking current song. Apparently `Dubtrack.room.model.attributes.currentSong.fkid` doesn't reliably track the current song. Possible fix:
+    - Watch all AJAX calls to monitor for playlist updates.
+    - Then perform new manual AJAX call to fetch current active playlist information (including active song).
+    - Parse for `fkid` and submit new request to SoundCloud for actual perma-link URL. 
