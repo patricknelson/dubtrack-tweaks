@@ -8,7 +8,7 @@
 // ==UserScript==
 // @name         dubtrack-tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.3.2
+// @version      0.3.3
 // @description  Automatically "updub" (upvote) tracks after a few seconds.
 // @author       Patrick Nelson (pat@catchyour.com) a.k.a. chunk_split()
 // @site         https://github.com/patricknelson/dubtrack-tweaks/
