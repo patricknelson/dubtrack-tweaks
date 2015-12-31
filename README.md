@@ -20,4 +20,14 @@ Adds extra functionality to [dubtrack.fm](https://www.dubtrack.fm), such as spac
 1. Visit [dubtrack.fm](https://www.dubtrack.fm) and enter a room.
 1. Make sure Tampermonkey or Greasemonkey is enabled (e.g. click the Tampermonkey icon and select "Enabled").
 
-**Note:** These instructions are for Chrome users, but installation should be very similar if you're using Firefox. For Firefox, you'll need to setup and use Greasemonkey instead of Tampermonkey which can be found here: http://userscripts-mirror.org/about/installing.html
+### Update Instructions
+
+Updating is easy. In Tampermonkey:
+
+1. Click the Tampermonkey icon (square with two dots).
+1. Click "Check for userscript updates".
+1. On the next screen, confirm that you want to update.
+
+![Update Screenshot](https://rawgit.com/patricknelson/dubtrack-tweaks/master/images/update.png)
+
+TODO: Add Firefox/Greasemonkey update instructions.
