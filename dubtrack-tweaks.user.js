@@ -8,12 +8,14 @@
 // ==UserScript==
 // @name         dubtrack-tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.3.1
+// @version      0.3.2
 // @description  Automatically "updub" (upvote) tracks after a few seconds.
 // @author       Patrick Nelson (pat@catchyour.com) a.k.a. chunk_split()
 // @site         https://github.com/patricknelson/dubtrack-tweaks/
 // @match        *://dubtrack.fm/*
 // @match        *://www.dubtrack.fm/*
+// @grant        unsafeWindow
+// @updateURL    https://rawgit.com/patricknelson/dubtrack-tweaks/master/dubtrack-tweaks.user.js
 // ==/UserScript==
 
 (function($, console, Dubtrack) {
