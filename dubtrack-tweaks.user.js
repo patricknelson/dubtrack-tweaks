@@ -48,14 +48,14 @@
 		/**
 		 * SONG LINKING
 		 */
-		var currentSongID = null, currentSongLink = null;
+		var lastSongID = null, currentSongLink = null;
 		setInterval(function() {
-			if (currentSongID != getCurrentSongID()) {
+			if (lastSongID != getCurrentSongID()) {
 				// Reset song link.
 				setSongLinkURL('');
 				console.log("Song changed, fetching URL...");
-				currentSongID = getCurrentSongID();
-				getSongURL(currentSongID, function(url) {
+				lastSongID = getCurrentSongID();
+				getSongURL(lastSongID, function(url) {
 					console.log("Obtained URL: " + url);
 					setSongLinkURL(url);
 				});
@@ -87,6 +87,7 @@
 		};
 
 		// Just an abstracted shortcut for getting currently playing song.
+		// TODO: It appears that suddenly this is no longer a realiable method for fetching the current song information.
 		var getCurrentSongID = function() {
 			if (!Dubtrack.room.model.attributes.currentSong) return '';
 			return Dubtrack.room.model.attributes.currentSong.fkid;
