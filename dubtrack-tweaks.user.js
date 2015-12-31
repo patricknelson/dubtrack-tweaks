@@ -6,9 +6,9 @@
  */
 
 // ==UserScript==
-// @name         Dubtrack upvote
+// @name         dubtrack-tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.3.1
 // @description  Automatically "updub" (upvote) tracks after a few seconds.
 // @author       Patrick Nelson (pat@catchyour.com) a.k.a. chunk_split()
 // @site         https://github.com/patricknelson/dubtrack-tweaks/
@@ -16,14 +16,15 @@
 // @match        *://www.dubtrack.fm/*
 // ==/UserScript==
 
-(function($, console) {
+(function($, console, Dubtrack) {
 	'use strict';
 
 	$(function() {
+		console.log("Loaded dubtrack-tweaks.");
+
 		/**
 		 * AUTO UPDUB/UPVOTE
 		 */
-
 		setInterval(function() {
 			// Don't do anything if a vote has already been case (i.e. if this song is downvoted as well).
 			if ($(".voted").length == 0) $(".dubup").click();
@@ -33,7 +34,6 @@
 		/**
 		 * SPACEBAR MUTE
 		 */
-
 		var muteButton = $(".icon-mute");
 		$("body").keypress(function(event){
 			var nodeName = event.target.nodeName;
@@ -46,7 +46,7 @@
 		/**
 		 * SONG LINKING
 		 */
-		var currentSongID = null;
+		var currentSongID = null, currentSongLink = null;
 		setInterval(function() {
 			if (currentSongID != getCurrentSongID()) {
 				// Reset song link.
@@ -56,10 +56,16 @@
 				getSongURL(currentSongID, function(url) {
 					setSongLink(url);
 				});
+			} else if (currentSongLink != getSongLink().find("a").attr("href")) {
+				// It's possible that the HTML on the page went out of sync with the plug-in. This can easily happen
+				// if the site decides to clobber/overwrite our modifications. So... let's reassert our dominance! Meow.
+				console.log("Fixing current song link.");
+				setSongLink(currentSongLink);
 			}
 		}, 1000);
 
 		var setSongLink = function(url) {
+			currentSongLink = url;
 			if (getSongLink().length == 0) $(".currentSong").append('<em class="currentSongLink"></em>');
 			var html = '';
 			if (url) html = ' &nbsp;&ndash;&nbsp; (<a target="_blank" style="text-decoration: underline;" href="' + url + '">Permalink</a>)';
@@ -100,4 +106,4 @@
 
 	});
 
-})(unsafeWindow.$, unsafeWindow.console);
+})(unsafeWindow.$, unsafeWindow.console, unsafeWindow.Dubtrack);
