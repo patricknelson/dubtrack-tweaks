@@ -8,7 +8,7 @@
 // ==UserScript==
 // @name         dubtrack-tweaks
 // @namespace    http://tampermonkey.net/
-// @version      0.3.4
+// @version      1.0.0
 // @description  Automatically "updub" (upvote) tracks after a few seconds.
 // @author       Patrick Nelson (pat@catchyour.com) a.k.a. chunk_split()
 // @site         https://github.com/patricknelson/dubtrack-tweaks/
@@ -29,7 +29,7 @@
 		 */
 		setInterval(function() {
 			// Don't do anything if a vote has already been case (i.e. if this song is downvoted as well).
-			if ($(".voted").length == 0) $(".dubup").click();
+			if ($(".voted").length === 0) $(".dubup").click();
 		}, 5000);
 
 
@@ -43,82 +43,6 @@
 			if (nodeName == "INPUT" || nodeName == "TEXTAREA") return;
 			muteButton.click();
 		});
-
-
-		/**
-		 * SONG LINKING
-		 */
-		var lastSongID = null, currentSongLink = null;
-		setInterval(function() {
-			if (lastSongID != getCurrentSongID()) {
-				// Reset song link.
-				setSongLinkURL('');
-				console.log("Song changed, fetching URL...");
-				lastSongID = getCurrentSongID();
-				getSongURL(lastSongID, function(url) {
-					console.log("Obtained URL: " + url);
-					setSongLinkURL(url);
-				});
-			} else if (getSongLink().length > 0 && currentSongLink != getSongLink().attr("href")) {
-				// It's possible that the HTML on the page went out of sync with the plug-in. This can easily happen
-				// if the site decides to clobber/overwrite our modifications. So... let's reassert our dominance! Meow.
-				console.log("Fixing current song link.");
-				setSongLinkURL(currentSongLink);
-			}
-		}, 1000);
-		
-		// Set's the "href" attribute of the song link (the <a> tag).
-		var setSongLinkURL = function(url) {
-			currentSongLink = url;
-			if (getSongLinkContainer().length == 0) $(".currentSong").append('<em class="songLinkContainer"></em>');
-			var html = '';
-			if (url) html = ' &nbsp;&ndash;&nbsp; (<a target="_blank" style="text-decoration: underline;" href="' + url + '">Permalink</a>)';
-			getSongLinkContainer().html(html);
-		};
-		
-		// Gets the wrapping container around the link <a> tag.
-		var getSongLinkContainer = function() {
-			return $(".songLinkContainer");
-		};
-		
-		// Returns the link <a> tag itself (not the URL).
-		var getSongLink = function() {
-			return getSongLinkContainer().find("a");
-		};
-
-		// Just an abstracted shortcut for getting currently playing song.
-		// TODO: It appears that suddenly this is no longer a realiable method for fetching the current song information.
-		var getCurrentSongID = function() {
-			if (!Dubtrack.room.model.attributes.currentSong) return '';
-			return Dubtrack.room.model.attributes.currentSong.fkid;
-		};
-
-		// Quick and dirty method for fetching URL to currently playing SoundCloud song.
-		var getSongURL = function(songID, callback) {
-			// Quick method for skipping YouTube songs (they are strings, SoundCloud is
-			if (isNaN(parseInt(songID))) {
-				if (songID){
-					callback('https://www.youtube.com/watch?v=' + songID);
-				} else {
-					callback('');
-				}
-			} else {
-				var consumerKey = Dubtrack.config.keys.soundcloud;
-				var url = 'https://api.soundcloud.com/tracks/' + songID + '?consumer_key=' + consumerKey;
-
-				// Setup request to retrieve detailed track information about this song so we can extract the URL.
-				var xhr = new XMLHttpRequest();
-				xhr.open('GET', url, true);
-				xhr.withCredentials = false;
-				xhr.onreadystatechange = function() {
-					if (xhr.readyState == 4 && xhr.status == 200) {
-						var data = JSON.parse(xhr.responseText);
-						callback(data.permalink_url);
-					}
-				};
-				xhr.send();
-			}
-		}
 
 	});
 

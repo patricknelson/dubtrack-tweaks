@@ -7,8 +7,6 @@ Adds extra functionality to [dubtrack.fm](https://www.dubtrack.fm), such as spac
 
  - Automatically "updub" (upvote) songs a few seconds after they start (or visiting a room).
  - Allows you to mute music by simply pressing the spacebar anywhere within the window (except in chat).
- - Added the "Permalink" to the right of song titles so that now you can FINALLY visit *currently*
-   playing SoundCloud (and YouTube) songs by simply clicking a link.
 
 ### Installation Instructions
 
@@ -30,12 +28,6 @@ Updating is easy. In Tampermonkey:
 
 ![Update Screenshot](https://rawgit.com/patricknelson/dubtrack-tweaks/master/images/update.png)
 
-TODO: Add Firefox/Greasemonkey update instructions.
-
-
 ### TODO
 
-- Fix bug tracking current song. Apparently `Dubtrack.room.model.attributes.currentSong.fkid` doesn't reliably track the current song. Possible fix:
-    - Watch all AJAX calls to monitor for playlist updates.
-    - Then perform new manual AJAX call to fetch current active playlist information (including active song).
-    - Parse for `fkid` and submit new request to SoundCloud for actual perma-link URL. 
+- Add Firefox/Greasemonkey update instructions.
